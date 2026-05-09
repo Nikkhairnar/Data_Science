@@ -1,0 +1,216 @@
+| Plot Type    | Matplotlib Syntax (`plt`)        | Seaborn Syntax (`sns`)              |
+| ------------ | -------------------------------- | ----------------------------------- |
+| Line Plot    | `plt.plot(x, y)`                 | `sns.lineplot(x=x, y=y)`            |
+| Histogram    | `plt.hist(data)`                 | `sns.histplot(data)`                |
+| Scatter Plot | `plt.scatter(x, y)`              | `sns.scatterplot(x=x, y=y)`         |
+| Bar Plot     | `plt.bar(x, y)`                  | `sns.barplot(x=x, y=y)`             |
+| Box Plot     | `plt.boxplot(data)`              | `sns.boxplot(x=x, y=y, data=df)`    |
+| Pie Chart    | `plt.pie(values, labels=labels)` | Not directly available              |
+| Count Plot   | Not directly available           | `sns.countplot(x='col', data=df)`   |
+| Heatmap      | Complex/manual                   | `sns.heatmap(data)`                 |
+| Pair Plot    | Not directly available           | `sns.pairplot(df)`                  |
+| Violin Plot  | `plt.violinplot(data)`           | `sns.violinplot(x=x, y=y, data=df)` |
+| KDE Plot     | Complex/manual                   | `sns.kdeplot(data)`                 |
+
+
+clear description for dataset contain: dataset_name,description(col,row contain),source from Kaggle
+
+*convert a datatype into other syntax example:
+df['Survived'] = df['Survived'].astype('category')
+
+*calc mean of a column:
+df['Age'].fillna(df['Age'].mean(), inplace=True)            same for median,for mode()[0]   #Take the FIRST most frequent value
+
+*one hot coding:
+df = pd.get_dummies(df, columns=['Embarked'], drop_first=True)         #Creating separate binary columns for categories.
+
+
+
+1. Line Plot
+Syntax
+plt.plot(x, y)
+plt.title("Line Plot")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
+Example
+plt.plot([1,2,3],[10,20,30])
+plt.show()
+Use
+
+Shows trends over time.
+
+🔹 2. Scatter Plot
+Syntax
+plt.scatter(x, y)
+plt.title("Scatter Plot")
+plt.show()
+Example
+plt.scatter(df['Age'], df['Marks'])
+plt.show()
+Use
+
+Shows relationship between two variables.
+
+🔹 3. Bar Plot
+Syntax
+plt.bar(categories, values)
+plt.title("Bar Plot")
+plt.show()
+Example
+plt.bar(['A','B','C'], [10,20,15])
+plt.show()
+Use
+
+Compares categories.
+
+🔹 4. Pie Chart
+Syntax
+plt.pie(values, labels=labels, autopct='%1.1f%%')
+plt.title("Pie Chart")
+plt.show()
+Example
+plt.pie([40,30,30], labels=['A','B','C'], autopct='%1.1f%%')
+plt.show()
+Use
+
+Shows percentage distribution.
+
+🔹 5. Heatmap
+Syntax
+sns.heatmap(data, annot=True)
+plt.show()
+Example
+sns.heatmap(df.corr(), annot=True)
+plt.show()
+Use
+
+Shows correlation between variables.
+
+🔹 6. Pairplot
+Syntax
+sns.pairplot(df)
+plt.show()
+Example
+sns.pairplot(df, hue='Species')
+plt.show()
+Use
+
+Shows pairwise relationships among columns.
+
+🔹 7. Violin Plot
+Syntax
+sns.violinplot(x=category, y=value)
+plt.show()
+Example
+sns.violinplot(x='Gender', y='Salary', data=df)
+plt.show()
+Use
+
+Shows data distribution and density.
+
+🔹 8. Countplot
+Syntax
+sns.countplot(x=column, data=df)
+plt.show()
+Example
+sns.countplot(x='Gender', data=df)
+plt.show()
+Use
+
+Counts occurrences of categories.
+
+🔹 9. Stripplot
+Syntax
+sns.stripplot(x=category, y=value, data=df)
+plt.show()
+Example
+sns.stripplot(x='Gender', y='Salary', data=df)
+plt.show()
+Use
+
+Shows distribution of individual data points.
+
+🎯 Quick Revision Table
+Plot	Syntax
+Line Plot	plt.plot(x,y)
+Scatter Plot	plt.scatter(x,y)
+Bar Plot	plt.bar(x,y)
+Pie Chart	plt.pie()
+Heatmap	sns.heatmap()
+Pairplot	sns.pairplot()
+Violin Plot	sns.violinplot()
+Countplot	sns.countplot()
+Stripplot	sns.stripplot()
+
+*Linear Regression predicts values using a straight-line relationship.
+Accuracy formula:
+
+Accuracy=
+Total Predictions
+Correct Predictions
+	​
+Confusion Matrix
+Displays prediction results in matrix form.
+
+It shows:
+
+correct predictions
+incorrect predictions
+---------------------- 
+*Format:
+
+[
+TN
+FN
+	​
+
+FP
+TP
+	​
+
+]
+
+Where:
+
+TN → True Negative
+FP → False Positive
+FN → False Negative
+TP → True Positive
+Separates confusion matrix values into individual variables.
+
+TN → correctly predicted No
+FP → wrongly predicted Yes
+FN → wrongly predicted No
+TP → correctly predicted Yes
+
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+accuracy
+error_rate = 1 - accuracy
+error_rate
+precision = TP / (TP + FP)
+precision
+recall = TP / (TP + FN)
+recall
+
+
+*bins=30 means the histogram divides the data into 30 groups (intervals/bars).
+
+df.hist(figsize=(10,8), bins=20)
+separately print statements
+plt.hist(df['sepal length'])
+plt.hist(df['sepal width'])
+plt.hist(df['petal length'])
+
+sns.boxplot(data=df.drop('species', axis=1))
+sns.boxplot(y=df['sepal length'])
+plt.show()
+
+sns.boxplot(y=df['sepal width'])
+plt.show()
+
+sns.boxplot(y=df['petal length'])
+plt.show()
+
+sns.boxplot(y=df['petal width'])
+plt.show()
